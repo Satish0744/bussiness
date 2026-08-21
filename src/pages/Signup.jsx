@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
 
 const SignupPage = () => {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ const SignupPage = () => {
   };
 
   return (
+    <div><Navbar></Navbar>
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
         <div>
@@ -303,6 +305,7 @@ const SignupPage = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
   );
 };
