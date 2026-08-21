@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 // ── Logo Icon (matches image: concentric U-arcs fingerprint style) ──
 const LogoIcon = () => (
@@ -64,14 +65,13 @@ const Navbar = () => {
   const blogItems     = ["Latest Posts", "Tutorials", "Case Studies"];
 
   return (
-    <header className="w-full bg-white  relative z-50">
+    <header className="w-full bg-white relative z-50">
 
       {/* ─────────────────────────────────────────
           DESKTOP  (≥ 1024 px) — exact Figma spec
       ───────────────────────────────────────── */}
       <div
-        className="hidden lg:block w-full ;
-"
+        className="hidden lg:block w-full"
         style={{ maxWidth: "1438.64px", margin: "0 auto" }}
       >
         <div
@@ -89,8 +89,8 @@ const Navbar = () => {
             style={{ height: "50px", gap: "130px" }}
           >
             {/* Logo — 160 × 50 */}
-            <a
-              href="#"
+            <Link
+              to="/"
               className="flex items-center gap-[10px] flex-shrink-0"
               style={{ width: "160.14px", height: "50px" }}
             >
@@ -98,7 +98,7 @@ const Navbar = () => {
               <span className="text-[#1a1a1a] font-semibold text-[20px] leading-none tracking-[-0.3px]">
                 Undefine
               </span>
-            </a>
+            </Link>
 
             {/* Nav links — 546 × 19, gap 30 */}
             <nav
@@ -110,17 +110,19 @@ const Navbar = () => {
                 justifyContent: "center",
               }}
             >
-              <a href="#"
+              <Link
+                to="/"
                 className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
                   transition-colors whitespace-nowrap leading-none">
                 Home
-              </a>
+              </Link>
 
-              <a href="#"
+              <Link
+                to="/about"
                 className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
                   transition-colors whitespace-nowrap leading-none">
                 About Us
-              </a>
+              </Link>
 
               {/* Features dropdown */}
               <div className="relative">
@@ -164,31 +166,43 @@ const Navbar = () => {
                 )}
               </div>
 
-              <a href="#"
+              <Link
+                to="/portfolio"
                 className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
                   transition-colors whitespace-nowrap leading-none">
                 Portfolio
-              </a>
+              </Link>
             </nav>
 
-            {/* CTA Button — 172 × 46, radius 10, #FF3F15 */}
-            <button
-              style={{
-                width: "172px",
-                height: "46px",
-                paddingTop: "13px",
-                paddingBottom: "13px",
-                paddingLeft: "20px",
-                paddingRight: "20px",
-                borderRadius: "10px",
-                background: "rgba(255, 63, 21, 1)",
-                flexShrink: 0,
-              }}
-              className="text-white font-semibold text-sm hover:opacity-90
-                active:scale-[0.98] transition-all"
-            >
-              Get a Quote
-            </button>
+            {/* Login + CTA Button */}
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <Link
+                to="/login"
+                className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
+                  transition-colors whitespace-nowrap px-2"
+              >
+                Login
+              </Link>
+              <Link to="/signup">
+                <button
+                  style={{
+                    width: "172px",
+                    height: "46px",
+                    paddingTop: "13px",
+                    paddingBottom: "13px",
+                    paddingLeft: "20px",
+                    paddingRight: "20px",
+                    borderRadius: "10px",
+                    background: "rgba(255, 63, 21, 1)",
+                    flexShrink: 0,
+                  }}
+                  className="text-white font-semibold text-sm hover:opacity-90
+                    active:scale-[0.98] transition-all cursor-pointer"
+                >
+                  Get a Quote
+                </button>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
@@ -198,26 +212,35 @@ const Navbar = () => {
       ───────────────────────────────────────── */}
       <div className="hidden md:flex lg:hidden items-center justify-between
         h-[64px] px-10">
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LogoIcon />
           <span className="text-[#1a1a1a] font-semibold text-lg tracking-tight">
             Undefine
           </span>
-        </a>
+        </Link>
 
         <nav className="flex items-center gap-6">
-          <a href="#" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">Home</a>
-          <a href="#" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">About Us</a>
-          <a href="#" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">Portfolio</a>
+          <Link to="/" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">Home</Link>
+          <Link to="/about" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">About Us</Link>
+          <Link to="/portfolio" className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium">Portfolio</Link>
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            style={{ background: "rgba(255, 63, 21, 1)", borderRadius: "10px" }}
-            className="text-white font-semibold text-sm px-5 py-[11px]
-              hover:opacity-90 transition-opacity">
-            Get a Quote
-          </button>
+          <Link
+            to="/login"
+            className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
+              transition-colors"
+          >
+            Login
+          </Link>
+          <Link to="/signup">
+            <button
+              style={{ background: "rgba(255, 63, 21, 1)", borderRadius: "10px" }}
+              className="text-white font-semibold text-sm px-5 py-[11px]
+                hover:opacity-90 transition-opacity cursor-pointer">
+              Get a Quote
+            </button>
+          </Link>
           <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1">
             {mobileOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
@@ -228,15 +251,24 @@ const Navbar = () => {
           MOBILE  (< 768 px)
       ───────────────────────────────────────── */}
       <div className="flex md:hidden items-center justify-between h-[60px] px-5">
-        <a href="#" className="flex items-center gap-2">
+        <Link to="/" className="flex items-center gap-2">
           <LogoIcon />
           <span className="text-[#1a1a1a] font-semibold text-[17px] tracking-tight">
             Undefine
           </span>
-        </a>
-        <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1">
-          {mobileOpen ? <CloseIcon /> : <MenuIcon />}
-        </button>
+        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            to="/login"
+            className="text-[#1a1a1a] hover:text-[#FF3F15] text-sm font-medium
+              transition-colors"
+          >
+            Login
+          </Link>
+          <button onClick={() => setMobileOpen(!mobileOpen)} className="p-1">
+            {mobileOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        </div>
       </div>
 
       {/* ─────────────────────────────────────────
@@ -248,14 +280,14 @@ const Navbar = () => {
           ${mobileOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}
       >
         <nav className="flex flex-col px-6 md:px-10 pb-6 pt-3 gap-0.5">
-          <a href="#" className="py-3 text-[#1a1a1a] font-medium text-sm
+          <Link to="/" className="py-3 text-[#1a1a1a] font-medium text-sm
             hover:text-[#FF3F15] border-b border-gray-50 transition-colors">
             Home
-          </a>
-          <a href="#" className="py-3 text-[#1a1a1a] font-medium text-sm
+          </Link>
+          <Link to="/about" className="py-3 text-[#1a1a1a] font-medium text-sm
             hover:text-[#FF3F15] border-b border-gray-50 transition-colors">
             About Us
-          </a>
+          </Link>
 
           {/* Features accordion */}
           <div className="border-b border-gray-50">
@@ -299,18 +331,27 @@ const Navbar = () => {
             </div>
           </div>
 
-          <a href="#" className="py-3 text-[#1a1a1a] font-medium text-sm
+          <Link to="/portfolio" className="py-3 text-[#1a1a1a] font-medium text-sm
             hover:text-[#FF3F15] transition-colors">
             Portfolio
-          </a>
+          </Link>
 
-          {/* Mobile CTA */}
-          <button
-            style={{ background: "rgba(255, 63, 21, 1)", borderRadius: "10px" }}
-            className="mt-4 w-full text-white font-semibold text-sm py-3
-              hover:opacity-90 active:scale-[0.98] transition-all">
-            Get a Quote
-          </button>
+          {/* Mobile Login & CTA */}
+          <Link
+            to="/login"
+            className="mt-4 w-full text-center text-[#1a1a1a] font-semibold text-sm py-3
+              hover:text-[#FF3F15] border border-gray-200 rounded-lg transition-colors"
+          >
+            Login
+          </Link>
+          <Link to="/signup">
+            <button
+              style={{ background: "rgba(255, 63, 21, 1)", borderRadius: "10px" }}
+              className="mt-2 w-full text-white font-semibold text-sm py-3
+                hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer">
+              Get a Quote
+            </button>
+          </Link>
         </nav>
       </div>
 
